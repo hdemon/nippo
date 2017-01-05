@@ -1,0 +1,17 @@
+#!/usr/bin/ruby
+require "date"
+
+nippo_dates = Dir.foreach(ENV["NIPPO_PATH"]).to_a
+  .reject {|filename| filename.match(/^\.+$/) }
+  .map {|filename| Date.strptime(filename, "%Y_%m_%d") }
+
+latest_week_number = nippo_dates
+  .map {|date| date.cweek }
+  .sort
+  .last
+
+this_week_nippo_filenames = nippo_dates
+  .select {|date| date.cweek == latest_week_number }
+  .map {|date| "#{ENV["NIPPO_PATH"]}/#{date.strftime("%Y_%m_%d")}" }
+
+puts this_week_nippo_filenames

@@ -1,0 +1,1 @@
+this_weeks_nippos | xargs cat | LC_ALL=C sort

@@ -1,0 +1,3 @@
+today=`date +"%Y_%m_%d"`
+cat >> $NIPPO_PATH/$today
+
